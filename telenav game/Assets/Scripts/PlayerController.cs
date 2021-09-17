@@ -30,8 +30,8 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
 
-        Vector3 move = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        characterController.Move(move * Time.deltaTime * currentMoveSpeed);
+        Vector3 move = CameraController.instance.transform.right * Input.GetAxis("Horizontal") + new Vector3(CameraController.instance.transform.forward.x, 0, CameraController.instance.transform.forward.z) * Input.GetAxis("Vertical");
+        characterController.Move(Vector3.ProjectOnPlane(move.normalized, Vector3.up).normalized * Time.deltaTime * currentMoveSpeed);
 
         if (move != Vector3.zero)
         {
