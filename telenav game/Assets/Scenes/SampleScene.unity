@@ -1119,6 +1119,7 @@ GameObject:
   - component: {fileID: 1265129661}
   - component: {fileID: 1265129659}
   - component: {fileID: 1265129660}
+  - component: {fileID: 1265129664}
   m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
@@ -1136,8 +1137,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 11
-  m_Acceleration: 12
+  m_Speed: 7
+  m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 0
@@ -1174,7 +1175,7 @@ MonoBehaviour:
   timeBetweenAttacks: 0.5
   projectile: {fileID: 8698635554685803534, guid: e694c27dcc36ce04da22707b00f5d8b0, type: 3}
   sightRange: 20
-  attackRange: 12
+  attackRange: 5
   playerInSightRange: 0
   playerInAttackRange: 0
 --- !u!23 &1265129661
@@ -1240,6 +1241,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &1265129664
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265129658}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1634190548
 GameObject:
   m_ObjectHideFlags: 0
