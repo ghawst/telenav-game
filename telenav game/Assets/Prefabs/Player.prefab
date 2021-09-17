@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6186189051257921997}
   - component: {fileID: 6186189051257921993}
   - component: {fileID: 6186189051257921992}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityValue: -19.62
-  moveSpeed: 5
+  moveSpeed: 7
   jumpHeight: 1.5
 --- !u!1001 &6186189052643546911
 PrefabInstance:
