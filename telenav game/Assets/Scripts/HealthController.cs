@@ -14,11 +14,14 @@ public class HealthController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentLove = 0;
-
         if (GetComponent<PlayerController>() != null)
         {
             isPlayer = true;
+        }
+
+        if (isPlayer)
+        {
+            currentLove = maxLove;
         }
 
         if (isPlayer)
