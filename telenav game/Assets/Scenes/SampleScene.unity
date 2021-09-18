@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!20 &510320704 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 2371355612137278165, guid: 9a1b131a46b7d8a449ee4bb1dca4b93d, type: 3}
+  m_PrefabInstance: {fileID: 2371355613066913702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!850595691 &520155746
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1094,7 +1099,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 292, y: -64}
+  m_AnchoredPosition: {x: 1648, y: -64}
   m_SizeDelta: {x: 488.8467, y: 53.865723}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &799581205
@@ -1236,7 +1241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.7688679, b: 0.95980334, a: 1}
+  m_Color: {r: 0.8980392, g: 0.70980394, b: 0.83137256, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1491,6 +1496,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 195084928, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 510320704}
+    - target: {fileID: 302190289, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 302190289, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1179061108, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: invulnerability
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1919348114449544705, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: player
       value: 
@@ -1670,9 +1691,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 645494381, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: canvasController
+      value: 
+      objectReference: {fileID: 668313570}
     - target: {fileID: 6186189051257921986, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: hugLove
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_RootOrder

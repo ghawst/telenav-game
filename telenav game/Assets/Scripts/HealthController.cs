@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class HealthController : MonoBehaviour
 {
+    public CanvasController canvasController;
+
     public int maxLove;
     private int currentLove;
+
+    public float invulnerability;
+    private float invulnerabilityCounter;
 
     public bool dead;
 
@@ -23,56 +28,48 @@ public class HealthController : MonoBehaviour
         {
             currentLove = maxLove;
         }
-
-        if (isPlayer)
+        else
         {
-            CanvasController.instance.UpdateHPDisplay((float)currentLove / maxLove);
+            currentLove = 0;
         }
+
+        canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (invulnerabilityCounter > 0)
         {
-            GetDamaged(15);
-        }
-
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            GetLoved(15);
+            invulnerabilityCounter -= Time.deltaTime;
         }
     }
 
     public void GetDamaged(int value)
     {
-        if (!dead)
+        if (!dead && invulnerabilityCounter <= 0)
         {
+            invulnerabilityCounter = invulnerability;
             currentLove -= value;
             if (currentLove < 0)
             {
                 currentLove = 0;
             }
         }
-        if (isPlayer)
-        {
-            CanvasController.instance.UpdateHPDisplay((float)currentLove / maxLove);
-        }
+        canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }
 
     public void GetLoved(int value)
     {
-        if (!dead)
+        if (!dead && invulnerabilityCounter <= 0)
         {
+            invulnerabilityCounter = invulnerability;
             currentLove += value;
             if (currentLove > maxLove)
             {
                 currentLove = maxLove;
             }
         }
-        if (isPlayer)
-        {
-            CanvasController.instance.UpdateHPDisplay((float)currentLove / maxLove);
-        }
+        canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }
 }

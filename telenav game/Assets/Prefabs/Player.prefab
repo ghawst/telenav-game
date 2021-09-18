@@ -1,5 +1,80 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2051421826
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2051421827}
+  - component: {fileID: 2051421828}
+  - component: {fileID: 2051421829}
+  - component: {fileID: 2051421830}
+  m_Layer: 10
+  m_Name: LoveBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2051421827
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051421826}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.78, z: 1.27}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6186189051257921998}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2051421828
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051421826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &2051421829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051421826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ba9a81465dcbeb459ec828854a6ed20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  love: 0
+--- !u!54 &2051421830
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2051421826}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1835752275722918652
 GameObject:
   m_ObjectHideFlags: 0
@@ -108,6 +183,7 @@ Transform:
   m_Children:
   - {fileID: 5932220750362046708}
   - {fileID: 5335488312064866588}
+  - {fileID: 2051421827}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -162,7 +238,7 @@ MonoBehaviour:
   jumpCD: 0.5
   jumpDashForce: 15
   jumpDashDuration: 1
-  stompForce: 1.8
+  stompForce: 2
   attackAnimStunPercent: 0.7
   patCD: 0.5
   patSpeed: 3
@@ -171,6 +247,10 @@ MonoBehaviour:
   hugCD: 1.5
   hugSpeed: 1.25
   stunned: 0
+  patLove: 5
+  hugLove: 15
+  loveBoxDuration: 0.2
+  loveBox: {fileID: 2051421826}
 --- !u!114 &645494381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,7 +263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22693193d36c5e443a501382072f3314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canvasController: {fileID: 0}
   maxLove: 100
+  invulnerability: 0.5
   dead: 0
 --- !u!1001 &6186189052643546911
 PrefabInstance:
