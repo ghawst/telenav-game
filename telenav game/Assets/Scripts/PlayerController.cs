@@ -42,6 +42,12 @@ public class PlayerController : MonoBehaviour
 
     public bool stunned;
 
+    public int patLove;
+    public int hugLove;
+    public float loveBoxDuration;
+    public GameObject loveBox;
+    private Coroutine loveCo;
+
     private void Awake()
     {
         instance = this;
@@ -113,7 +119,11 @@ public class PlayerController : MonoBehaviour
                 {
                     if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl))
                     {
-                        playerVelocity.y -= Mathf.Sqrt(stompForce * -0.001f * gravityValue);
+                        if (playerVelocity.y > 0)
+                        {
+                            playerVelocity.y = -playerVelocity.y;
+                        }
+                        playerVelocity.y -= Mathf.Sqrt(stompForce * -0.01f * gravityValue);
                     }
                 }
             }
@@ -150,6 +160,11 @@ public class PlayerController : MonoBehaviour
                     animator.SetTrigger("pat");
                     patDashDurationCounter = patDashDuration;
                     patStunCounter = patStun;
+                    if (loveCo != null)
+                    {
+                        StopCoroutine(loveCo);
+                    }
+                    loveCo = StartCoroutine(LoveCo(patLove));
                 }
                 if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0 && patCDCounter <= 0)
                 {
@@ -157,6 +172,11 @@ public class PlayerController : MonoBehaviour
                     hugCDCounter = hugCD;
                     animator.SetTrigger("hug");
                     hugStunCounter = hugStun;
+                    if (loveCo != null)
+                    {
+                        StopCoroutine(loveCo);
+                    }
+                    loveCo = StartCoroutine(LoveCo(hugLove));
                 }
             }
 
@@ -198,5 +218,17 @@ public class PlayerController : MonoBehaviour
 
             jumpDashDurationCounter -= Time.deltaTime;
         }
+    }
+
+    public IEnumerator LoveCo(int love)
+    {
+        yield return new WaitForSeconds(.1f);
+
+        loveBox.SetActive(true);
+        loveBox.GetComponent<LoveDealer>().love = love;
+
+        yield return new WaitForSeconds(loveBoxDuration);
+
+        loveBox.SetActive(false);
     }
 }
