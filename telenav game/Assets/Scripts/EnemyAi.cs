@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
@@ -11,6 +10,8 @@ public class EnemyAi : MonoBehaviour
     public LayerMask whatIsGround, whatIsPlayer;
 
     public float health;
+
+    public EnemyController enemyController;
 
     //Patroling
     public Vector3 walkPoint;
@@ -25,6 +26,11 @@ public class EnemyAi : MonoBehaviour
     //States
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
+
+    private void Awake()
+    {
+        enemyController = GetComponent<EnemyController>();
+    }
 
     private void Update()
     {
@@ -77,9 +83,13 @@ public class EnemyAi : MonoBehaviour
         if (!alreadyAttacked)
         {
             ///Attack code here
-            Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+            
+            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+
+
             ///End of attack code
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);

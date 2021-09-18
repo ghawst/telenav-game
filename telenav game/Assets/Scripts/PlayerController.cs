@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public float hugCD;
     private float hugCDCounter;
 
-
     private void Awake()
     {
         instance = this;
