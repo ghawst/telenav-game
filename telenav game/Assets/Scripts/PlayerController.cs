@@ -104,10 +104,10 @@ public class PlayerController : MonoBehaviour
             {
                 horizontalInput = Input.GetAxis("Horizontal");
                 verticalInput = Input.GetAxis("Vertical");
-                if (playerVelocity.y < 0)
-                {
-                    jumpDashDurationCounter = 0;
-                }
+            }
+            if (grounded)
+            {
+                jumpDashDurationCounter = 0;
             }
 
             Vector3 move = CameraController.instance.transform.right * horizontalInput + Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized * verticalInput;
