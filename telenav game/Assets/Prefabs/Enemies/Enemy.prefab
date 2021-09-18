@@ -413,7 +413,7 @@ MonoBehaviour:
   enemyController: {fileID: 0}
   walkPoint: {x: 0, y: 0, z: 0}
   walkPointRange: 5
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 3
   projectile: {fileID: 8698635554685803534, guid: e694c27dcc36ce04da22707b00f5d8b0, type: 3}
   sightRange: 20
   attackRange: 4
@@ -460,6 +460,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvasController: {fileID: 195084930}
   maxLove: 100
+  invulnerability: 0.5
   dead: 0
 --- !u!1001 &1919348113372953559
 PrefabInstance:

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class EnemyAi : MonoBehaviour
@@ -11,7 +12,7 @@ public class EnemyAi : MonoBehaviour
 
     public float health;
 
-    public EnemyController enemyController;
+    private EnemyController enemyController;
 
     //Patroling
     public Vector3 walkPoint;
@@ -27,6 +28,10 @@ public class EnemyAi : MonoBehaviour
     public float sightRange, attackRange;
     public bool playerInSightRange, playerInAttackRange;
 
+    private bool rotateTowardsPlayer;
+    public float rotationSpeed;
+    public float rotationToAttackTime;
+
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
@@ -41,6 +46,12 @@ public class EnemyAi : MonoBehaviour
         if (!playerInSightRange && !playerInAttackRange) Patrolling();
         if (playerInSightRange && !playerInAttackRange) ChasePlayer();
         if (playerInAttackRange && playerInSightRange) AttackPlayer();
+
+        if (rotateTowardsPlayer)
+        {
+            var targetRotation = Quaternion.LookRotation(new Vector3(player.position.x, transform.position.y, player.position.z) - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+        }
     }
 
     private void Patrolling()
@@ -76,24 +87,34 @@ public class EnemyAi : MonoBehaviour
     private void AttackPlayer()
     {
         //Make sure enemy doesn't move
-        agent.SetDestination(transform.position);
+        //agent.SetDestination(transform.position);
 
         if (!alreadyAttacked)
         {
-            transform.LookAt(new Vector3(player.position.x, transform.position.y, player.position.z));
+            StartCoroutine(AttackCo());
 
-            ///Attack code here
-
-            //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
-            //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
-            //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
-
-
-
-            ///End of attack code
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), timeBetweenAttacks);
         }
+    }
+
+    private IEnumerator AttackCo()
+    {
+        rotateTowardsPlayer = true;
+
+        yield return new WaitForSeconds(rotationToAttackTime);
+        agent.SetDestination(player.position);
+        rotateTowardsPlayer = false;
+
+        ///Attack code here
+
+        //Rigidbody rb = Instantiate(projectile, transform.position, Quaternion.identity).GetComponent<Rigidbody>();
+        //rb.AddForce(transform.forward * 32f, ForceMode.Impulse);
+        //rb.AddForce(transform.up * 8f, ForceMode.Impulse);
+
+        enemyController.Attack();
+
+        ///End of attack code
     }
 
     private void ResetAttack()
