@@ -285,7 +285,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh36562
+  m_Name: pb_Mesh147524
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1299,9 +1299,23 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 338710617671740046, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'Foot.L'\n\tFrom animation clip 'pat'"
+      objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921986, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: hugCD
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: patCD
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_RootOrder
