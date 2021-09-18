@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &2309210936739184012
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1148865051732953612}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -7843526606762953986, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
 --- !u!1 &2966068874391040442
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +23,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6757688080516653826}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Perna_Model06
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,14 +100,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: perna_6_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3590086638062959488, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d553dc040fd4e2d46869a91cbbe54315, type: 2}
+    - target: {fileID: 6562889748348933850, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
 --- !u!4 &6012092903264762685 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
+  m_PrefabInstance: {fileID: 6117445035484208342}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1148865051732953612 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6562889748348933850, guid: dc61c3ae71405e343a237aaba7bf0ba9, type: 3}
   m_PrefabInstance: {fileID: 6117445035484208342}
   m_PrefabAsset: {fileID: 0}

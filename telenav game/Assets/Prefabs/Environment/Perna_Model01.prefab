@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!64 &7530830743607635150
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1991556786136223165}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -5546347261141537002, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
 --- !u!1 &7408305799091460088
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +23,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7112216895691062702}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Perna_Model01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,6 +100,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: perna_1_low (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3564783574603935192, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6589126927893049898, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -95,5 +117,10 @@ PrefabInstance:
 --- !u!4 &3265515325960767374 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
+  m_PrefabInstance: {fileID: 3088283651188793445}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1991556786136223165 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3564783574603935192, guid: a6860c7272c8cfe458cff2441c97a5ca, type: 3}
   m_PrefabInstance: {fileID: 3088283651188793445}
   m_PrefabAsset: {fileID: 0}
