@@ -20,11 +20,26 @@ public class PlayerController : MonoBehaviour
 
     public float jumpCD;
     private float jumpCDCounter;
+    public float jumpDashForce;
+    public float jumpDashDuration;
+    private float jumpDashDurationCounter;
 
+    public float attackAnimStunPercent;
     public float patCD;
+    public float patSpeed;
+    public float patDashForce;
+    public float patDashDuration;
+    private float patDashDurationCounter;
     private float patCDCounter;
     public float hugCD;
+    public float hugSpeed;
     private float hugCDCounter;
+    private float patStun;
+    private float patStunCounter;
+    private float hugStun;
+    private float hugStunCounter;
+
+    public bool stunned;
 
     private void Awake()
     {
@@ -38,50 +53,101 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         currentMoveSpeed = moveSpeed;
+
+        animator.SetFloat("patSpeed", patSpeed);
+        animator.SetFloat("hugSpeed", hugSpeed);
+
+        foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
+        {
+            if (clip.name.Contains("pat"))
+            {
+                patStun = clip.length * attackAnimStunPercent / patSpeed;
+            }
+            else if (clip.name.Contains("hug"))
+            {
+                hugStun = clip.length * attackAnimStunPercent / hugSpeed;
+            }
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        grounded = characterController.isGrounded;
-        if (grounded && playerVelocity.y < 0)
+        //if (animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("pat") || animator.GetCurrentAnimatorClipInfo(0)[0].clip.name.Contains("hug"))
+        //{
+        //    stunned = true;
+        //}
+        //else
+        //{
+        //    stunned = false;
+        //}
+        if (hugStunCounter > 0 || patStunCounter > 0)
         {
-            playerVelocity.y = 0f;
+            stunned = true;
+        }
+        else
+        {
+            stunned = false;
         }
 
-        Vector3 move = CameraController.instance.transform.right * Input.GetAxis("Horizontal") + Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized * Input.GetAxis("Vertical");
-        characterController.Move(Vector3.ClampMagnitude(move, 1) * Time.deltaTime * currentMoveSpeed);
-        
-        if (move != Vector3.zero)
+        if (!stunned)
         {
-            gameObject.transform.forward = move;
-        }
+            grounded = characterController.isGrounded;
+            if (grounded && playerVelocity.y < 0)
+            {
+                playerVelocity.y = 0f;
+            }
 
-        if (Input.GetButton("Jump") && grounded2 && jumpCDCounter <= 0)
-        {
-            jumpCDCounter = jumpCD;
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-        }
+            var horizontalInput = 0f;
+            var verticalInput = 0f;
+            if (grounded2)
+            {
+                horizontalInput = Input.GetAxis("Horizontal");
+                verticalInput = Input.GetAxis("Vertical");
+                if (playerVelocity.y < 0)
+                {
+                    jumpDashDurationCounter = 0;
+                }
+            }
 
-        playerVelocity.y += gravityValue * Time.deltaTime;
-        characterController.Move(playerVelocity * Time.deltaTime);
+            Vector3 move = CameraController.instance.transform.right * horizontalInput + Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized * verticalInput;
+            characterController.Move(Vector3.ClampMagnitude(move, 1) * Time.deltaTime * currentMoveSpeed);
 
-        //Attacks
-        if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
-        {
-            patCDCounter = patCD;
-            animator.SetTrigger("pat");
-        }
-        if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
-        {
-            hugCDCounter = hugCD;
-            animator.SetTrigger("hug");
-        }
+            if (move != Vector3.zero)
+            {
+                gameObject.transform.forward = move;
+            }
 
-        //Animator
-        animator.SetFloat("move", move.sqrMagnitude);
-        animator.SetFloat("yVelocity", characterController.velocity.y / 4);
-        animator.SetBool("grounded", grounded2);
+            if (Input.GetButton("Jump") && grounded2 && jumpCDCounter <= 0)
+            {
+                jumpCDCounter = jumpCD;
+                playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
+                jumpDashDurationCounter = jumpDashDuration;
+            }
+
+            playerVelocity.y += gravityValue * Time.deltaTime;
+            characterController.Move(playerVelocity * Time.deltaTime);
+
+            //Attacks
+            if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
+            {
+                patCDCounter = patCD;
+                animator.SetTrigger("pat");
+                patDashDurationCounter = patDashDuration;
+                patStunCounter = patStun;
+            }
+            if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
+            {
+                hugCDCounter = hugCD;
+                animator.SetTrigger("hug");
+                hugStunCounter = hugStun;
+            }
+
+            //Animator
+            animator.SetFloat("move", move.sqrMagnitude);
+            animator.SetFloat("yVelocity", characterController.velocity.y / 4);
+            animator.SetBool("grounded", grounded2);
+        }
 
         if (jumpCDCounter > 0)
         {
@@ -94,6 +160,26 @@ public class PlayerController : MonoBehaviour
         if (hugCDCounter > 0)
         {
             hugCDCounter -= Time.deltaTime;
+        }
+        if (patStunCounter > 0)
+        {
+            patStunCounter -= Time.deltaTime;
+        }
+        if (hugStunCounter > 0)
+        {
+            hugStunCounter -= Time.deltaTime;
+        }
+        if (patDashDurationCounter > 0)
+        {
+            characterController.Move(transform.forward * Time.deltaTime * patDashForce);
+
+            patDashDurationCounter -= Time.deltaTime;
+        }
+        if (jumpDashDurationCounter > 0)
+        {
+            characterController.Move(transform.forward * Time.deltaTime * jumpDashForce);
+
+            jumpDashDurationCounter -= Time.deltaTime;
         }
     }
 }
