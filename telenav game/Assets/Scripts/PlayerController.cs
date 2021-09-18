@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.forward = move;
         }
 
-        if (Input.GetButtonDown("Jump") && grounded2 && jumpCDCounter <= 0)
+        if (Input.GetButton("Jump") && grounded2 && jumpCDCounter <= 0)
         {
             jumpCDCounter = jumpCD;
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
