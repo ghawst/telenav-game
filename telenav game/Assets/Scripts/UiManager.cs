@@ -20,6 +20,7 @@ public class UiManager : MonoBehaviour
         if (Input.GetKey("escape"))
         {
             pauseMenuPanel.SetActive(true);
+            GameManager.instance.UnhideCursor();
         }
     }
 
@@ -28,7 +29,7 @@ public class UiManager : MonoBehaviour
         //PlayAnimation...
         //CoroutineForClosingPanel;
         pauseMenuPanel.SetActive(false);
-        GameManager.instance.UnhideCursor();
+        GameManager.instance.HideCursor();
     }
 
     public void QuitGame()
