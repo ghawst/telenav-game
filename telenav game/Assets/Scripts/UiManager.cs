@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class UiManager : MonoBehaviour
 {
+    public GameObject pauseMenuPanel;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,7 +19,7 @@ public class UiManager : MonoBehaviour
     {
         if (Input.GetKey("escape"))
         {
-            //numePanel.SetActive(true);
+            pauseMenuPanel.SetActive(true);
         }
     }
 
@@ -25,6 +27,7 @@ public class UiManager : MonoBehaviour
     {
         //PlayAnimation...
         //CoroutineForClosingPanel;
+        pauseMenuPanel.SetActive(false);
     }
 
     public void QuitGame()
