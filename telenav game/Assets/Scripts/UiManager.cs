@@ -28,6 +28,7 @@ public class UiManager : MonoBehaviour
         //PlayAnimation...
         //CoroutineForClosingPanel;
         pauseMenuPanel.SetActive(false);
+        GameManager.instance.UnhideCursor();
     }
 
     public void QuitGame()
