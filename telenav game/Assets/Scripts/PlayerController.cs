@@ -160,10 +160,11 @@ public class PlayerController : MonoBehaviour
             //Attacks
             if (grounded2)
             {
+                Debug.Log(Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)));
                 if (Input.GetButtonDown("Fire1") && patCDCounter <= 0 && hugCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
-                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7)
+                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7 && closestEnemy != null)
                     {
                         transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
                     }
@@ -180,7 +181,7 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0 && patCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
-                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7)
+                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7 && closestEnemy != null)
                     {
                         transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
                     }
