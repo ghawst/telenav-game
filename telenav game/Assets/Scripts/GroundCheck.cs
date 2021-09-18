@@ -10,7 +10,7 @@ public class GroundCheck : MonoBehaviour
     {
         if (player)
         {
-            PlayerController.instance.grounded = true;
+            PlayerController.instance.grounded2 = true;
         }
     }
 
@@ -18,7 +18,7 @@ public class GroundCheck : MonoBehaviour
     {
         if (player)
         {
-            PlayerController.instance.grounded = false;
+            PlayerController.instance.grounded2 = false;
         }
     }
 }

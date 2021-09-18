@@ -10,7 +10,8 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
 
     private Vector3 playerVelocity;
-    public bool grounded;
+    private bool grounded;
+    public bool grounded2;
     public float gravityValue = -9.81f;
 
     public float moveSpeed;
@@ -19,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public float jumpCD;
     private float jumpCDCounter;
+
 
     private void Awake()
     {
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //grounded = characterController.isGrounded;
+        grounded = characterController.isGrounded;
         if (grounded && playerVelocity.y < 0)
         {
             playerVelocity.y = 0f;
@@ -52,7 +54,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && grounded && jumpCDCounter <= 0)
+        if (Input.GetButtonDown("Jump") && grounded2)
         {
             jumpCDCounter = jumpCD;
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -65,11 +67,9 @@ public class PlayerController : MonoBehaviour
         //Animator
         animator.SetFloat("move", move.sqrMagnitude);
         animator.SetFloat("yVelocity", characterController.velocity.y / 4);
-        animator.SetBool("grounded", grounded);
+        animator.SetBool("grounded", grounded2);
 
-
-        //CDs
-        if (jumpCDCounter > 0)
+        if (jumpCDCounter <= 0)
         {
             jumpCDCounter -= Time.deltaTime;
         }
