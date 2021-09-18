@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
             if (grounded && playerVelocity.y < 0)
             {
                 playerVelocity.y = 0f;
+                grounded2 = true;
             }
 
             var horizontalInput = 0f;
@@ -142,15 +143,17 @@ public class PlayerController : MonoBehaviour
             //Attacks
             if (grounded2)
             {
-                if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
+                if (Input.GetButtonDown("Fire1") && patCDCounter <= 0 && hugCDCounter <= 0)
                 {
+                    //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
                     patCDCounter = patCD;
                     animator.SetTrigger("pat");
                     patDashDurationCounter = patDashDuration;
                     patStunCounter = patStun;
                 }
-                if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
+                if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0 && patCDCounter <= 0)
                 {
+                    //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
                     hugCDCounter = hugCD;
                     animator.SetTrigger("hug");
                     hugStunCounter = hugStun;

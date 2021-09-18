@@ -46,7 +46,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 7
+  m_Speed: 10
   m_Acceleration: 10
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -84,7 +84,7 @@ MonoBehaviour:
   walkPointRange: 5
   timeBetweenAttacks: 1
   projectile: {fileID: 8698635554685803534, guid: e694c27dcc36ce04da22707b00f5d8b0, type: 3}
-  sightRange: 12
+  sightRange: 20
   attackRange: 4
   playerInSightRange: 0
   playerInAttackRange: 0
