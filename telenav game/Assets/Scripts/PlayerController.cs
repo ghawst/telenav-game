@@ -21,6 +21,11 @@ public class PlayerController : MonoBehaviour
     public float jumpCD;
     private float jumpCDCounter;
 
+    public float patCD;
+    private float patCDCounter;
+    public float hugCD;
+    private float hugCDCounter;
+
 
     private void Awake()
     {
@@ -53,8 +58,7 @@ public class PlayerController : MonoBehaviour
             gameObject.transform.forward = move;
         }
 
-        // Changes the height position of the player..
-        if (Input.GetButtonDown("Jump") && grounded2)
+        if (Input.GetButton("Jump") && grounded2 && jumpCDCounter <= 0)
         {
             jumpCDCounter = jumpCD;
             playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
@@ -63,15 +67,34 @@ public class PlayerController : MonoBehaviour
         playerVelocity.y += gravityValue * Time.deltaTime;
         characterController.Move(playerVelocity * Time.deltaTime);
 
+        //Attacks
+        if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
+        {
+            patCDCounter = patCD;
+            animator.SetTrigger("pat");
+        }
+        if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
+        {
+            hugCDCounter = hugCD;
+            animator.SetTrigger("hug");
+        }
 
         //Animator
         animator.SetFloat("move", move.sqrMagnitude);
         animator.SetFloat("yVelocity", characterController.velocity.y / 4);
         animator.SetBool("grounded", grounded2);
 
-        if (jumpCDCounter <= 0)
+        if (jumpCDCounter > 0)
         {
             jumpCDCounter -= Time.deltaTime;
+        }
+        if (patCDCounter > 0)
+        {
+            patCDCounter -= Time.deltaTime;
+        }
+        if (hugCDCounter > 0)
+        {
+            hugCDCounter -= Time.deltaTime;
         }
     }
 }
