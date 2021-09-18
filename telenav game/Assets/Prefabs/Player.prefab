@@ -242,11 +242,12 @@ MonoBehaviour:
   attackAnimStunPercent: 0.7
   patCD: 0.5
   patSpeed: 3
-  patDashForce: 12
+  patDashForce: 15
   patDashDuration: 0.2
   hugCD: 1.5
   hugSpeed: 1.25
   stunned: 0
+  realStun: 0
   patLove: 5
   hugLove: 15
   loveBoxDuration: 0.2

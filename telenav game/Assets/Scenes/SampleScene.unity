@@ -123,6 +123,66 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &487707656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 487707657}
+  - component: {fileID: 487707659}
+  - component: {fileID: 487707658}
+  m_Layer: 10
+  m_Name: DamageDealer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &487707657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487707656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.734, z: 0.456}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_Children: []
+  m_Father: {fileID: 1179061107}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &487707658
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487707656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5da8baf8b3508a34680e5cdad30b987f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 15
+  stunDuration: 0.5
+  enemyController: {fileID: 0}
+--- !u!65 &487707659
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 487707656}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!20 &510320704 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 2371355612137278165, guid: 9a1b131a46b7d8a449ee4bb1dca4b93d, type: 3}
@@ -960,6 +1020,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1179061107 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1919348114449544706, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+  m_PrefabInstance: {fileID: 1919348113500073661}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1549461255
 GameObject:
   m_ObjectHideFlags: 0
@@ -1580,7 +1645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1919348114449544705, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: rotationToAttackTime
-      value: 0.3
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 1919348114449544706, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: m_RootOrder
@@ -1638,6 +1703,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1919348114449544711, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: m_TagString
+      value: enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 1920248448690327283, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1647,9 +1716,17 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: damage
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: dashSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: damageDealer
+      value: 
+      objectReference: {fileID: 487707656}
     - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: dashDuration
       value: 1.5

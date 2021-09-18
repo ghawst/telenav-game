@@ -41,12 +41,15 @@ public class PlayerController : MonoBehaviour
     private float hugStunCounter;
 
     public bool stunned;
+    public float realStun;
 
     public int patLove;
     public int hugLove;
     public float loveBoxDuration;
     public GameObject loveBox;
     private Coroutine loveCo;
+
+    private GameObject closestEnemy;
 
     private void Awake()
     {
@@ -75,6 +78,11 @@ public class PlayerController : MonoBehaviour
                 hugStun = clip.length * attackAnimStunPercent / hugSpeed;
             }
         }
+
+        if (GameManager.instance.enemies.Length > 0)
+        {
+            closestEnemy = GameManager.instance.enemies[0];
+        }
     }
 
     // Update is called once per frame
@@ -97,7 +105,7 @@ public class PlayerController : MonoBehaviour
             stunned = false;
         }
 
-        if (!stunned)
+        if (!stunned && realStun <= 0)
         {
             grounded = characterController.isGrounded;
             if (grounded && playerVelocity.y < 0)
@@ -147,7 +155,6 @@ public class PlayerController : MonoBehaviour
                 jumpDashDurationCounter = jumpDashDuration;
             }
 
-            playerVelocity.y += gravityValue * Time.deltaTime;
             characterController.Move(playerVelocity * Time.deltaTime);
 
             //Attacks
@@ -156,6 +163,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Fire1") && patCDCounter <= 0 && hugCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
+                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7)
+                    {
+                        transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
+                    }
                     patCDCounter = patCD;
                     animator.SetTrigger("pat");
                     patDashDurationCounter = patDashDuration;
@@ -169,6 +180,10 @@ public class PlayerController : MonoBehaviour
                 if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0 && patCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
+                    if (Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7)
+                    {
+                        transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
+                    }
                     hugCDCounter = hugCD;
                     animator.SetTrigger("hug");
                     hugStunCounter = hugStun;
@@ -179,12 +194,14 @@ public class PlayerController : MonoBehaviour
                     loveCo = StartCoroutine(LoveCo(hugLove));
                 }
             }
+            playerVelocity.y += gravityValue * Time.deltaTime;
 
             //Animator
             animator.SetFloat("move", move.sqrMagnitude);
             animator.SetFloat("yVelocity", characterController.velocity.y / 4);
             animator.SetBool("grounded", grounded2);
         }
+        animator.SetFloat("realStun", realStun);
 
         if (jumpCDCounter > 0)
         {
@@ -218,6 +235,33 @@ public class PlayerController : MonoBehaviour
 
             jumpDashDurationCounter -= Time.deltaTime;
         }
+        if (realStun > 0)
+        {
+            realStun -= Time.deltaTime;
+        }
+
+        FindClosestEnemy();
+    }
+
+    public void FindClosestEnemy()
+    {
+        if (GameManager.instance.enemies.Length > 0)
+        {
+            foreach (GameObject enemy in GameManager.instance.enemies)
+            {
+                if (enemy != null && Vector3.Distance(transform.position, enemy.transform.position - Vector3.up * enemy.transform.position.y) < Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y))
+                {
+                    closestEnemy = enemy;
+                }
+            }
+        }
+    }
+
+    public void GetStunned(float duration)
+    {
+        realStun = duration;
+
+        jumpDashDurationCounter = .001f;
     }
 
     public IEnumerator LoveCo(int love)

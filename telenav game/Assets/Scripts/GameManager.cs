@@ -4,16 +4,32 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
+
+    public GameObject[] enemies;
+
+    private void Awake()
+    {
+        instance = this;
+
+        enemies = GameObject.FindGameObjectsWithTag("enemy");
+    }
+
     // Start is called before the first frame update
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        HideCursor();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void HideCursor()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }

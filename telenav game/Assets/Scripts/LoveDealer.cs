@@ -20,7 +20,7 @@ public class LoveDealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<HealthController>())
+        if (other.GetComponent<HealthController>() != null)
         {
             other.GetComponent<HealthController>().GetLoved(love);
         }

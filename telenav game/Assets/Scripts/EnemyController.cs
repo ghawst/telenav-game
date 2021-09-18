@@ -12,9 +12,11 @@ public class EnemyController : MonoBehaviour
     private Animator animator;
 
     [Header("Sheep")]
+    public int damage;
     public float dashSpeed;
     public float dashDuration;
     private float dashDurationCounter;
+    public GameObject damageDealer;
 
     // Start is called before the first frame update
     void Start()
@@ -39,6 +41,7 @@ public class EnemyController : MonoBehaviour
                 {
                     enemyAi.agent.SetDestination(enemyAi.transform.position);
                     animator.SetBool("attacking", false);
+                    damageDealer.SetActive(false);
                 }
             }
             else
@@ -53,6 +56,12 @@ public class EnemyController : MonoBehaviour
         if (type.Equals(Type.sheep))
         {
             dashDurationCounter = dashDuration;
+            damageDealer.SetActive(true);
         }
+    }
+
+    public void StopDash()
+    {
+        dashDurationCounter = .01f;
     }
 }
