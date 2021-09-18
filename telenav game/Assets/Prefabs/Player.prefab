@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 6186189051257921997}
   - component: {fileID: 6186189051257921993}
   - component: {fileID: 6186189051257921992}
-  - component: {fileID: 645494377}
+  - component: {fileID: 645494381}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -162,15 +162,16 @@ MonoBehaviour:
   jumpCD: 0.5
   jumpDashForce: 12
   jumpDashDuration: 1
+  stompForce: 1.8
   attackAnimStunPercent: 0.7
   patCD: 0.5
   patSpeed: 3
-  patDashForce: 15
-  patDashDuration: 0.12
+  patDashForce: 12
+  patDashDuration: 0.2
   hugCD: 1.5
   hugSpeed: 1.25
   stunned: 0
---- !u!114 &645494377
+--- !u!114 &645494381
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -182,6 +183,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22693193d36c5e443a501382072f3314, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxLove: 100
+  dead: 0
 --- !u!1001 &6186189052643546911
 PrefabInstance:
   m_ObjectHideFlags: 0

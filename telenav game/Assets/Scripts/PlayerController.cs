@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     public float jumpDashForce;
     public float jumpDashDuration;
     private float jumpDashDurationCounter;
+    public float stompForce;
 
     public float attackAnimStunPercent;
     public float patCD;
@@ -105,7 +106,17 @@ public class PlayerController : MonoBehaviour
                 horizontalInput = Input.GetAxis("Horizontal");
                 verticalInput = Input.GetAxis("Vertical");
             }
-            if (grounded)
+            else
+            {
+                if (jumpCD - jumpCDCounter > .2f)
+                {
+                    if (Input.GetKey(KeyCode.C) || Input.GetKey(KeyCode.LeftControl))
+                    {
+                        playerVelocity.y -= Mathf.Sqrt(stompForce * -0.001f * gravityValue);
+                    }
+                }
+            }
+            if (grounded || grounded2 && playerVelocity.y < 0)
             {
                 jumpDashDurationCounter = 0;
             }
@@ -129,18 +140,21 @@ public class PlayerController : MonoBehaviour
             characterController.Move(playerVelocity * Time.deltaTime);
 
             //Attacks
-            if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
+            if (grounded2)
             {
-                patCDCounter = patCD;
-                animator.SetTrigger("pat");
-                patDashDurationCounter = patDashDuration;
-                patStunCounter = patStun;
-            }
-            if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
-            {
-                hugCDCounter = hugCD;
-                animator.SetTrigger("hug");
-                hugStunCounter = hugStun;
+                if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
+                {
+                    patCDCounter = patCD;
+                    animator.SetTrigger("pat");
+                    patDashDurationCounter = patDashDuration;
+                    patStunCounter = patStun;
+                }
+                if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
+                {
+                    hugCDCounter = hugCD;
+                    animator.SetTrigger("hug");
+                    hugStunCounter = hugStun;
+                }
             }
 
             //Animator
