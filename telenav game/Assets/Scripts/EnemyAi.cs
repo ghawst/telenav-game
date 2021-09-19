@@ -35,7 +35,10 @@ public class EnemyAi : MonoBehaviour
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
+    }
 
+    private void Start()
+    {
         player = PlayerController.instance.transform;
     }
 

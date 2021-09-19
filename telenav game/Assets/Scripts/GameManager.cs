@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public bool heartUnlocked;
 
+    public bool paused;
+
     private void Awake()
     {
         instance = this;

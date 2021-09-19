@@ -234,10 +234,10 @@ MonoBehaviour:
   grounded2: 0
   gravityValue: -19.62
   moveSpeed: 7
-  jumpHeight: 1.75
+  startJumpHeight: 1.75
   jumpCD: 0.5
-  jumpDashForce: 15
-  jumpDashDuration: 1
+  startJumpDashForce: 15
+  startJumpDashDuration: 1
   stompForce: 2
   attackAnimStunPercent: 0.7
   patCD: 0.5
@@ -255,6 +255,10 @@ MonoBehaviour:
   loveBoxDuration: 0.2
   loveBox: {fileID: 2051421826}
   heart: {fileID: 5218723000126449717, guid: 94b529aa82f1ade4b9d5236b04d33088, type: 3}
+  onPillow: 0
+  pillowJumpHeight: 10
+  pillowJumpDashForce: 0.5
+  pillowJumpDashDuration: 3
   dead: 0
 --- !u!114 &645494381
 MonoBehaviour:

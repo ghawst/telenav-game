@@ -31,8 +31,11 @@ public class CameraController : MonoBehaviour
     void LateUpdate()
     {
         //acumulam deplasamentul mouselui la unghiurile facute de sys coord local cu axele lumii:
-        yaw += Input.GetAxis("Mouse X") * rotationSpeed;
-        pitch -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        if (!GameManager.instance.paused)
+        {
+            yaw += Input.GetAxis("Mouse X") * rotationSpeed;
+            pitch -= Input.GetAxis("Mouse Y") * rotationSpeed;
+        }
         //limitam rotatia sus-jos a.i. sa nu se dea peste cap:
         pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
         //aplicam rotatia:
