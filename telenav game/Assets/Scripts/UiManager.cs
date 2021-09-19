@@ -23,6 +23,7 @@ public class UiManager : MonoBehaviour
         if (Input.GetKey("escape"))
         {
             pauseMenuPanel.SetActive(true);
+            uiAnimator.SetTrigger("PauseIn");
             GameManager.instance.UnhideCursor();
             GameManager.instance.paused = true;
         }
@@ -30,11 +31,8 @@ public class UiManager : MonoBehaviour
 
     public void HidePausePanel()
     {
-        //PlayAnimation...
-        //CoroutineForClosingPanel;
-        pauseMenuPanel.SetActive(false);
-        GameManager.instance.HideCursor();
-        GameManager.instance.paused = false;
+        uiAnimator.SetTrigger("PauseOut");
+        StartCoroutine(HidePausePanelCo());
     }
 
     public void QuitGame()
@@ -66,9 +64,17 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene("Level01");
     }
 
-
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    IEnumerator HidePausePanelCo()
+    {
+        yield return new WaitForSeconds(1f);
+        pauseMenuPanel.SetActive(false);
+        GameManager.instance.HideCursor();
+        GameManager.instance.paused = false;
+    }
+
 }
