@@ -69,6 +69,10 @@ public class HealthController : MonoBehaviour
             {
                 currentLove = maxLove;
             }
+            if (currentLove >= maxLove && !isPlayer)
+            {
+                Destroy(gameObject);
+            }
         }
         canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }

@@ -11,6 +11,8 @@ public class EnemyController : MonoBehaviour
     private EnemyAi enemyAi;
     private Animator animator;
 
+    public GameObject goodModel;
+
     [Header("Sheep")]
     public int damage;
     public float dashSpeed;
@@ -63,5 +65,15 @@ public class EnemyController : MonoBehaviour
     public void StopDash()
     {
         dashDurationCounter = .01f;
+    }
+
+    private void OnDestroy()
+    {
+        var model = Instantiate(goodModel);
+        if (type.Equals(Type.sheep))
+        {
+            model.transform.position = transform.position + Vector3.up * -3.5f;
+        }
+        model.transform.LookAt(new Vector3(PlayerController.instance.transform.position.x, model.transform.position.y, PlayerController.instance.transform.position.z));
     }
 }

@@ -300,7 +300,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 49c162284fc9bba48a1b66f3983a8c94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -663,7 +663,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 49c162284fc9bba48a1b66f3983a8c94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -768,7 +768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c22777d6e868e4f2fb421913386b154e, type: 2}
+  - {fileID: 2100000, guid: 49c162284fc9bba48a1b66f3983a8c94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1147,7 +1147,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 49c162284fc9bba48a1b66f3983a8c94, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1724,6 +1724,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
+      propertyPath: goodModel
+      value: 
+      objectReference: {fileID: 3407422583501099861, guid: 4aa38466dbdae8545a800784e41213cf, type: 3}
+    - target: {fileID: 2783518198761845896, guid: 048f263d880fd0e4fb08a4ff5185d325, type: 3}
       propertyPath: damageDealer
       value: 
       objectReference: {fileID: 487707656}
@@ -1970,6 +1974,14 @@ PrefabInstance:
     - target: {fileID: 6186189051257921986, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: hugLove
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: patLove
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_RootOrder
