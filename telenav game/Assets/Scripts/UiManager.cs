@@ -7,7 +7,8 @@ using UnityEngine.SceneManagement;
 public class UiManager : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
-    public GameObject openCreditsButton, closeCreditButton; 
+    public GameObject openCreditsButton, closeCreditButton;
+    public GameObject instructionImage;
 
     public Animator uiAnimator;
 
@@ -67,6 +68,12 @@ public class UiManager : MonoBehaviour
     public void ResetScene()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    public void CloseInstructionPanel()
+    {
+        instructionImage.SetActive(false);
+        GameManager.instance.HideCursor();
     }
 
     IEnumerator HidePausePanelCo()
