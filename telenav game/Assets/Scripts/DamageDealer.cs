@@ -23,13 +23,16 @@ public class DamageDealer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.GetComponent<HealthController>() != null)
+        if (other.tag.Equals("player"))
         {
-            other.GetComponent<HealthController>().GetDamaged(damage);
-        }
-        if (other.GetComponent<PlayerController>() != null && stunDuration > 0)
-        {
-            other.GetComponent<PlayerController>().GetStunned(stunDuration);
+            if (other.GetComponent<HealthController>() != null)
+            {
+                other.GetComponent<HealthController>().GetDamaged(damage);
+            }
+            if (other.GetComponent<PlayerController>() != null && stunDuration > 0)
+            {
+                other.GetComponent<PlayerController>().GetStunned(stunDuration);
+            }
         }
         if (enemyController != null && enemyController.type.Equals(EnemyController.Type.sheep))
         {

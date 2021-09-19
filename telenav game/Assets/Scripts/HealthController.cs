@@ -15,6 +15,7 @@ public class HealthController : MonoBehaviour
     public bool dead;
 
     private bool isPlayer = false;
+    private bool isBoss = false;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +24,12 @@ public class HealthController : MonoBehaviour
         {
             isPlayer = true;
         }
+        else if (GetComponent<BossController>() != null)
+        {
+            isBoss = true;
+        }
 
-        if (isPlayer)
+            if (isPlayer)
         {
             currentLove = maxLove;
         }
@@ -74,9 +79,15 @@ public class HealthController : MonoBehaviour
             {
                 currentLove = maxLove;
             }
-            if (currentLove >= maxLove && !isPlayer)
+            if (currentLove >= maxLove && !isPlayer && !isBoss)
             {
                 GetComponent<EnemyController>().Pacified();
+                dead = true;
+                Destroy(gameObject);
+            }
+            if (currentLove >= maxLove && isBoss)
+            {
+                GetComponent<BossController>().Pacified();
                 dead = true;
                 Destroy(gameObject);
             }

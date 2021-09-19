@@ -30790,6 +30790,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_LocalPosition.x
+<<<<<<< Updated upstream:telenav game/Assets/Scenes/Level01.unity
       value: 336.1
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
@@ -30799,6 +30800,17 @@ PrefabInstance:
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_LocalPosition.z
       value: -33.9
+=======
+      value: 857.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 11.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -25.3
+>>>>>>> Stashed changes:telenav game/Assets/Scenes/EnviroBlockOut.unity
       objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_LocalRotation.w

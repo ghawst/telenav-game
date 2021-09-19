@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemy
   - peaceful
+  - player
   layers:
   - Default
   - TransparentFX
