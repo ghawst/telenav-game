@@ -258,7 +258,7 @@ MonoBehaviour:
   onPillow: 0
   pillowJumpHeight: 10
   pillowJumpDashForce: 0.5
-  pillowJumpDashDuration: 1
+  pillowJumpDashDuration: 3
   dead: 0
 --- !u!114 &645494381
 MonoBehaviour:
