@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,6 +52,8 @@ public class PlayerController : MonoBehaviour
     private Coroutine loveCo;
 
     private GameObject closestEnemy;
+
+    public bool dead;
 
     private void Awake()
     {
@@ -105,7 +109,7 @@ public class PlayerController : MonoBehaviour
             stunned = false;
         }
 
-        if (!stunned && realStun <= 0)
+        if (!stunned && realStun <= 0 && !dead)
         {
             grounded = characterController.isGrounded;
             if (grounded && playerVelocity.y < 0)
@@ -275,5 +279,20 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(loveBoxDuration);
 
         loveBox.SetActive(false);
+    }
+
+    public void Lose()
+    {
+        animator.SetTrigger("lost");
+        dead = true;
+
+        StartCoroutine(ResetScene());
+    }
+
+    private IEnumerator ResetScene()
+    {
+        yield return new WaitForSeconds(GameManager.instance.waitToResetAfterLoss);
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

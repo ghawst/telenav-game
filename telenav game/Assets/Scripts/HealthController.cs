@@ -56,6 +56,11 @@ public class HealthController : MonoBehaviour
                 currentLove = 0;
             }
         }
+        if (currentLove <= 0 && isPlayer)
+        {
+            PlayerController.instance.Lose();
+            dead = true;
+        }
         canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }
 
@@ -71,6 +76,8 @@ public class HealthController : MonoBehaviour
             }
             if (currentLove >= maxLove && !isPlayer)
             {
+                GetComponent<EnemyController>().Pacified();
+                dead = true;
                 Destroy(gameObject);
             }
         }

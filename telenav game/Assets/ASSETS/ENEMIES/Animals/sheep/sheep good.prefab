@@ -828,9 +828,9 @@ GameObject:
   - component: {fileID: 3407422583501326197}
   - component: {fileID: 3407422583508483115}
   - component: {fileID: 4290592367340825596}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: sheep good
-  m_TagString: Untagged
+  m_TagString: peaceful
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

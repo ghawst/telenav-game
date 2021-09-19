@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] enemies;
 
+    public float waitToResetAfterLoss;
+
     private void Awake()
     {
         instance = this;

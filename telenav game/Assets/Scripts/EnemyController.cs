@@ -67,7 +67,7 @@ public class EnemyController : MonoBehaviour
         dashDurationCounter = .01f;
     }
 
-    private void OnDestroy()
+    public void Pacified()
     {
         var model = Instantiate(goodModel);
         if (type.Equals(Type.sheep))

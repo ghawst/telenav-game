@@ -43,9 +43,9 @@ public class EnemyAi : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if (!playerInSightRange && !playerInAttackRange) Patrolling();
-        if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInAttackRange && playerInSightRange) AttackPlayer();
+        if (!playerInSightRange && !playerInAttackRange || PlayerController.instance.dead) Patrolling();
+        if (playerInSightRange && !playerInAttackRange && !PlayerController.instance.dead) ChasePlayer();
+        if (playerInAttackRange && playerInSightRange && !PlayerController.instance.dead) AttackPlayer();
 
         if (rotateTowardsPlayer)
         {
@@ -75,7 +75,7 @@ public class EnemyAi : MonoBehaviour
 
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
-        if (Physics.Raycast(walkPoint, -transform.up, 2f, whatIsGround))
+        if (Physics.Raycast(walkPoint, -transform.up, 10f, whatIsGround))
             walkPointSet = true;
     }
 

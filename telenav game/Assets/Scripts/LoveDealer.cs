@@ -24,5 +24,9 @@ public class LoveDealer : MonoBehaviour
         {
             other.GetComponent<HealthController>().GetLoved(love);
         }
+        if (other.tag.Equals("peaceful"))
+        {
+            PlayerController.instance.GetComponent<HealthController>().GetLoved(love);
+        }
     }
 }
