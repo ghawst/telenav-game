@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2181342
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7060,15 +7060,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5272110183574227136, guid: bf8570d922621524ea992fbc72a18302, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5272110183574227138, guid: bf8570d922621524ea992fbc72a18302, type: 3}
       propertyPath: m_Color.a
-      value: 0
+      value: 0.28235295
       objectReference: {fileID: 0}
     - target: {fileID: 5272110183574227138, guid: bf8570d922621524ea992fbc72a18302, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272110183574227139, guid: bf8570d922621524ea992fbc72a18302, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 613
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272110183574227139, guid: bf8570d922621524ea992fbc72a18302, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 1147.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272110183574227139, guid: bf8570d922621524ea992fbc72a18302, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2.7999878
       objectReference: {fileID: 0}
     - target: {fileID: 5272110183574227141, guid: bf8570d922621524ea992fbc72a18302, type: 3}
       propertyPath: m_CullTransparentMesh
@@ -15585,11 +15597,7 @@ PrefabInstance:
       objectReference: {fileID: 566910667}
     - target: {fileID: 338710617671740046, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_WarningMessage
-      value: "\nBinding warning: Some generic clip(s) animate transforms that are
-        already bound by a Humanoid avatar. These transforms can only be changed
-        by Humanoid clips.\n\tTransform 'UpLeg.L'\n\tTransform 'UpLeg.L'\n\tTransform
-        'Leg.L'\n\tTransform 'Foot.L'\n\tFrom animation clip 'pat'\n\tFrom animation
-        clip 'Cry'"
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 743927420477407730, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_LocalPosition.x
