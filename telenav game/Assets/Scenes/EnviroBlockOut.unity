@@ -27080,6 +27080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6186189051257921992, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
+      propertyPath: pillowJumpDashDuration
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6186189051257921998, guid: 313affb70dfccad438e8115c7152fa59, type: 3}
       propertyPath: m_RootOrder
       value: 1

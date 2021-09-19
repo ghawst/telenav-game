@@ -18,12 +18,15 @@ public class PlayerController : MonoBehaviour
 
     public float moveSpeed;
     private float currentMoveSpeed;
-    public float jumpHeight;
+    public float startJumpHeight;
+    private float jumpHeight;
 
     public float jumpCD;
     private float jumpCDCounter;
-    public float jumpDashForce;
-    public float jumpDashDuration;
+    public float startJumpDashForce;
+    private float jumpDashForce;
+    public float startJumpDashDuration;
+    private float jumpDashDuration;
     private float jumpDashDurationCounter;
     public float stompForce;
 
@@ -59,6 +62,10 @@ public class PlayerController : MonoBehaviour
     public GameObject heart;
     private GameObject closestEnemy;
 
+    public bool onPillow;
+    public float pillowJumpHeight;
+    public float pillowJumpDashForce;
+    public float pillowJumpDashDuration;
     public bool dead;
 
     private void Awake()
@@ -73,6 +80,10 @@ public class PlayerController : MonoBehaviour
         animator = GetComponentInChildren<Animator>();
 
         currentMoveSpeed = moveSpeed;
+
+        jumpHeight = startJumpHeight;
+        jumpDashForce = startJumpDashForce;
+        jumpDashDuration = startJumpDashDuration;
 
         animator.SetFloat("patSpeed", patSpeed);
         animator.SetFloat("hugSpeed", hugSpeed);
@@ -118,6 +129,19 @@ public class PlayerController : MonoBehaviour
         else
         {
             stunned = false;
+        }
+
+        if (onPillow)
+        {
+            jumpHeight = pillowJumpHeight;
+            jumpDashForce = pillowJumpDashForce;
+            jumpDashDuration = pillowJumpDashDuration;
+        }
+        else
+        {
+            jumpHeight = startJumpHeight;
+            jumpDashForce = startJumpDashForce;
+            jumpDashDuration = startJumpDashDuration;
         }
 
         if (!stunned && realStun <= 0 && !dead)

@@ -21,6 +21,7 @@ public class UiManager : MonoBehaviour
         {
             pauseMenuPanel.SetActive(true);
             GameManager.instance.UnhideCursor();
+            GameManager.instance.paused = true;
         }
     }
 
@@ -30,6 +31,7 @@ public class UiManager : MonoBehaviour
         //CoroutineForClosingPanel;
         pauseMenuPanel.SetActive(false);
         GameManager.instance.HideCursor();
+        GameManager.instance.paused = false;
     }
 
     public void QuitGame()
