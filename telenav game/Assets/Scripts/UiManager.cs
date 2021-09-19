@@ -43,7 +43,7 @@ public class UiManager : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("UIBlockOut");
+        SceneManager.LoadScene("MainMenu");
     }
 
     public void ShowCredits()
