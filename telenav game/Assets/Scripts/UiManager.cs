@@ -7,11 +7,16 @@ using UnityEngine.SceneManagement;
 public class UiManager : MonoBehaviour
 {
     public GameObject pauseMenuPanel;
+    public GameObject openCreditsButton, closeCreditButton; 
+
+    public Animator uiAnimator;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        uiAnimator = gameObject.GetComponent<Animator>();
+        openCreditsButton.SetActive(true);
+        closeCreditButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -44,7 +49,16 @@ public class UiManager : MonoBehaviour
 
     public void ShowCredits()
     {
+        uiAnimator.SetTrigger("CreditsIn");
+        closeCreditButton.SetActive(true);
+        openCreditsButton.SetActive(false);
+    }
 
+    public void HideCredits()
+    {
+        uiAnimator.SetTrigger("CreditsOut");
+        openCreditsButton.SetActive(true);
+        closeCreditButton.SetActive(false);
     }
 
     public void LoadFirstLevel()
