@@ -32,6 +32,8 @@ public class EnemyAi : MonoBehaviour
     public float rotationSpeed;
     public float rotationToAttackTime;
 
+    public GameObject steam;
+
     private void Awake()
     {
         enemyController = GetComponent<EnemyController>();
@@ -107,7 +109,18 @@ public class EnemyAi : MonoBehaviour
     {
         rotateTowardsPlayer = true;
 
+        if (enemyController.type == EnemyController.Type.sheep && steam != null)
+        {
+            steam.SetActive(true);
+        }
+
         yield return new WaitForSeconds(rotationToAttackTime);
+
+        if (enemyController.type == EnemyController.Type.sheep && steam != null)
+        {
+            steam.SetActive(false);
+        }
+
         agent.SetDestination(player.position);
         rotateTowardsPlayer = false;
 

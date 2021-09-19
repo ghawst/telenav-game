@@ -91,6 +91,10 @@ public class HealthController : MonoBehaviour
                 dead = true;
                 Destroy(gameObject);
             }
+
+            var vfx = Instantiate(GameManager.instance.hugVFX);
+            vfx.transform.position = transform.position;
+            Destroy(vfx, 2);
         }
         canvasController.UpdateHPDisplay((float)currentLove / maxLove);
     }

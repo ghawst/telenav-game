@@ -82,6 +82,7 @@ public class BossController : MonoBehaviour
                 {
                     attackCDCounter = attackCD;
                     var attackObj = Instantiate(attack);
+                    animator.SetTrigger("attack");
                     attackObj.transform.position = transform.position + Vector3.up * 3;
                 }
                 break;

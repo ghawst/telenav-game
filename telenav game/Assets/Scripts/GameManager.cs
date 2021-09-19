@@ -14,6 +14,8 @@ public class GameManager : MonoBehaviour
 
     public bool paused;
 
+    public GameObject hugVFX;
+
     private void Awake()
     {
         instance = this;

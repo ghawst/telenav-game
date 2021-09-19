@@ -46,3 +46,5 @@ MonoBehaviour:
   enemies: []
   waitToResetAfterLoss: 3
   heartUnlocked: 0
+  paused: 0
+  hugVFX: {fileID: 7898330845407892578, guid: a635e0c282afe6b46ad5df62969f8c37, type: 3}
