@@ -43,3 +43,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 237194902937a7c489057d88ba49a6f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemies: []
+  waitToResetAfterLoss: 3
+  heartUnlocked: 0

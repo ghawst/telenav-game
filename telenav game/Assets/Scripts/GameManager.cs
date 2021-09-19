@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
 
     public float waitToResetAfterLoss;
 
+    public bool heartUnlocked;
+
     private void Awake()
     {
         instance = this;

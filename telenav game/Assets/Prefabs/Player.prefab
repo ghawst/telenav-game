@@ -246,12 +246,15 @@ MonoBehaviour:
   patDashDuration: 0.2
   hugCD: 1.5
   hugSpeed: 1.25
+  kissCD: 2
+  kissSpeed: 1.5
   stunned: 0
   realStun: 0
   patLove: 12
   hugLove: 25
   loveBoxDuration: 0.2
   loveBox: {fileID: 2051421826}
+  heart: {fileID: 5218723000126449717, guid: 94b529aa82f1ade4b9d5236b04d33088, type: 3}
   dead: 0
 --- !u!114 &645494381
 MonoBehaviour:

@@ -41,6 +41,11 @@ public class PlayerController : MonoBehaviour
     private float patStunCounter;
     private float hugStun;
     private float hugStunCounter;
+    public float kissCD;
+    public float kissSpeed;
+    private float kissStun;
+    private float kissStunCounter;
+    private float kissCDCounter;
 
     public bool stunned;
     public float realStun;
@@ -51,6 +56,7 @@ public class PlayerController : MonoBehaviour
     public GameObject loveBox;
     private Coroutine loveCo;
 
+    public GameObject heart;
     private GameObject closestEnemy;
 
     public bool dead;
@@ -70,6 +76,7 @@ public class PlayerController : MonoBehaviour
 
         animator.SetFloat("patSpeed", patSpeed);
         animator.SetFloat("hugSpeed", hugSpeed);
+        animator.SetFloat("kissSpeed", kissSpeed);
 
         foreach (AnimationClip clip in animator.runtimeAnimatorController.animationClips)
         {
@@ -80,6 +87,10 @@ public class PlayerController : MonoBehaviour
             else if (clip.name.Contains("hug"))
             {
                 hugStun = clip.length * attackAnimStunPercent / hugSpeed;
+            }
+            else if (clip.name.Contains("Kiss"))
+            {
+                kissStun = clip.length * attackAnimStunPercent / kissSpeed;
             }
         }
 
@@ -100,7 +111,7 @@ public class PlayerController : MonoBehaviour
         //{
         //    stunned = false;
         //}
-        if (hugStunCounter > 0 || patStunCounter > 0)
+        if (hugStunCounter > 0 || patStunCounter > 0 || kissStunCounter > 0)
         {
             stunned = true;
         }
@@ -165,10 +176,10 @@ public class PlayerController : MonoBehaviour
             if (grounded2)
             {
                 //Debug.Log(Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)));
-                if (Input.GetButtonDown("Fire1") && patCDCounter <= 0 && hugCDCounter <= 0)
+                if (Input.GetButtonDown("Fire1") && patCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
-                    if (closestEnemy != null && Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7)
+                    if (closestEnemy != null && Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 20)
                     {
                         transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
                     }
@@ -182,10 +193,10 @@ public class PlayerController : MonoBehaviour
                     }
                     loveCo = StartCoroutine(LoveCo(patLove));
                 }
-                if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0 && patCDCounter <= 0)
+                else if (Input.GetButtonDown("Fire2") && hugCDCounter <= 0)
                 {
                     //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
-                    if (closestEnemy != null && Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 7 && closestEnemy != null)
+                    if (closestEnemy != null && Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 20)
                     {
                         transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
                     }
@@ -197,6 +208,20 @@ public class PlayerController : MonoBehaviour
                         StopCoroutine(loveCo);
                     }
                     loveCo = StartCoroutine(LoveCo(hugLove));
+                }
+                else if (Input.GetKeyDown(KeyCode.LeftShift) && kissCDCounter <= 0 && GameManager.instance.heartUnlocked)
+                {
+                    //gameObject.transform.forward = Vector3.ProjectOnPlane(CameraController.instance.transform.forward, Vector3.up).normalized;
+                    if (closestEnemy != null && Mathf.Abs(Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y)) < 20)
+                    {
+                        transform.LookAt(new Vector3(closestEnemy.transform.position.x, transform.position.y, closestEnemy.transform.position.z));
+                    }
+                    kissCDCounter = kissCD;
+                    animator.SetTrigger("kiss");
+                    kissStunCounter = kissStun;
+                    var heartObj = Instantiate(heart);
+                    heartObj.transform.forward = transform.forward;
+                    heartObj.transform.position = transform.position + transform.forward * 1.2f;
                 }
             }
             playerVelocity.y += gravityValue * Time.deltaTime;
@@ -220,6 +245,10 @@ public class PlayerController : MonoBehaviour
         {
             hugCDCounter -= Time.deltaTime;
         }
+        if (kissCDCounter > 0)
+        {
+            kissCDCounter -= Time.deltaTime;
+        }
         if (patStunCounter > 0)
         {
             patStunCounter -= Time.deltaTime;
@@ -227,6 +256,10 @@ public class PlayerController : MonoBehaviour
         if (hugStunCounter > 0)
         {
             hugStunCounter -= Time.deltaTime;
+        }
+        if (kissStunCounter > 0)
+        {
+            kissStunCounter -= Time.deltaTime;
         }
         if (patDashDurationCounter > 0)
         {
@@ -254,6 +287,10 @@ public class PlayerController : MonoBehaviour
         {
             foreach (GameObject enemy in GameManager.instance.enemies)
             {
+                if (closestEnemy == null)
+                {
+                    closestEnemy = enemy;
+                }
                 if (enemy != null && Vector3.Distance(transform.position, enemy.transform.position - Vector3.up * enemy.transform.position.y) < Vector3.Distance(transform.position, closestEnemy.transform.position - Vector3.up * closestEnemy.transform.position.y))
                 {
                     closestEnemy = enemy;
@@ -285,6 +322,7 @@ public class PlayerController : MonoBehaviour
     {
         animator.SetTrigger("lost");
         dead = true;
+        gameObject.transform.forward = Vector3.up;
 
         StartCoroutine(ResetScene());
     }
@@ -294,5 +332,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(GameManager.instance.waitToResetAfterLoss);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void Teleport(Vector3 destination)
+    {
+        characterController.enabled = false;
+        transform.position = destination;
+        characterController.enabled = true;
     }
 }
