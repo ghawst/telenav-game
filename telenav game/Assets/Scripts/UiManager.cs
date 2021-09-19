@@ -15,8 +15,6 @@ public class UiManager : MonoBehaviour
     void Start()
     {
         uiAnimator = gameObject.GetComponent<Animator>();
-        openCreditsButton.SetActive(true);
-        closeCreditButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -65,7 +63,7 @@ public class UiManager : MonoBehaviour
 
     public void LoadFirstLevel()
     {
-        SceneManager.LoadScene("EnviroBlockOut");
+        SceneManager.LoadScene("Level01");
     }
 
 
